@@ -83,24 +83,173 @@ console.log(repeatIt("hello", 3));
 console.log(repeatIt("abc", 2));
 
 // truncate problem.
-function truncate(str) {
-  let result = '';
-  let maxLength = 15;
 
-  for (let i = 0; i < maxLength && i < str.length; i++) {
-      result += str[i];
+function truncate(str) {
+  if (str.length > 18) {
+      let result = '';
+      for (let i = 0; i < 15; i++) {
+          result += str[i];
+      }
+      result += '...';
+      return result;
+  }
+  return str;
+}
+
+console.log(truncate('The fault, dear Brutus, is not in our stars, but in ourselves.'));
+
+// ciEmailify function to convert a two-part name into an email.
+
+function ciEmailify(fullName) {
+  let email = '';
+  let atSymbol = '@';
+  let domain = 'perseverenow.org';
+  let lowerCaseOffset = 'a'.charCodeAt(0) - 'A'.charCodeAt(0); // Offset to convert uppercase to lowercase
+
+  for (let i = 0; i < fullName.length; i++) {
+      let charCode = fullName.charCodeAt(i);
+      
+      if (fullName[i] === ' ') {
+          email += '.';
+      } else if (charCode >= 65 && charCode <= 90) { // Uppercase letters
+          email += String.fromCharCode(charCode + lowerCaseOffset);
+      } else {
+          email += fullName[i];
+      }
   }
 
-  if (str.length > 18) {
-      result += '...';
+  email += atSymbol;
+
+  for (let i = 0; i < domain.length; i++) {
+      email += domain[i];
+  }
+
+  return email;
+}
+
+console.log(ciEmailify('colin jaffe')); // Output: 'colin.jaffe@perseverenow.org'
+
+// reverse function to reverse a string.
+function reverse(str) {
+  let result = '';
+  for (let i = str.length - 1; i >= 0; i--) {
+      result += str[i];
+  }
+  return result;
+}
+
+console.log(reverse('Learning JavaScript'));
+
+//onlyVowels is a function to return a string with only vowels.
+
+function onlyVowels(word) {
+  const vowels = 'aeiouAEIOU';
+  let result = '';
+
+  for (let i = 0; i < word.length; i++) {
+      for (let j = 0; j < vowels.length; j++) {
+          if (word[i] === vowels[j]) {
+              result += word[i];
+              break;
+          }
+      }
   }
 
   return result;
 }
 
-console.log(truncate('The fault, dear Brutus, is not in our stars, but in ourselves.')); 
+console.log(onlyVowels('javascript'));
 
- /********************************************
+// Extra stretch goals //
+// crazyCase function to convert a string to a crazy case.
+function crazyCase(str) {
+  let result = '';
+  for (let i = 0; i < str.length; i++) {
+      if (i % 2 === 0) {
+          result += str[i].toLowerCase();
+      } else {
+          result += str[i].toUpperCase();
+      }
+  }
+  return result;
+}
+
+console.log(crazyCase('hello'));
+
+// titlecase function to convert a string to title case.
+
+function titleCase(str) {
+  let result = '';
+  let capitalizeNext = true;
+
+  for (let i = 0; i < str.length; i++) {
+      if (str[i] === ' ') {
+          result += str[i];
+          capitalizeNext = true;
+      } else if (capitalizeNext) {
+          result += str[i].toUpperCase();
+          capitalizeNext = false;
+      } else {
+          result += str[i].toLowerCase();
+      }
+  }
+
+  return result;
+}
+
+console.log(titleCase('return of the king')); // 'Return Of The King'
+
+// camelCase function to convert a string to camel case.
+
+function camelCase(str) {
+  let result = '';
+  let capitalizeNext = false;
+
+  for (let i = 0; i < str.length; i++) {
+      let char = str[i];
+      if (char === ' ' || char === '-' || char === '_') {
+          capitalizeNext = true;
+      } else {
+          if (capitalizeNext) {
+              result += char.toUpperCase();
+              capitalizeNext = false;
+          } else {
+              result += char.toLowerCase();
+          }
+      }
+  }
+
+  return result;
+}
+
+console.log(camelCase('hello world'));
+
+// crazyCase2ReturnOfCrazyCase same as `crazyCase`, but does NOT count spaces as letters to upper or lower case.
+
+function crazyCase2ReturnOfCrazyCase(str) {
+  let result = '';
+  let toggle = true; // Start with true to toggle between lower and upper case
+
+  for (let i = 0; i < str.length; i++) {
+      if (str[i] !== ' ') {
+          if (toggle) {
+              result += str[i].toLowerCase();
+          } else {
+              result += str[i].toUpperCase();
+          }
+          toggle = !toggle; // Switch the case for the next letter
+      } else {
+          result += str[i]; // Just add the space as is
+      }
+  }
+
+  return result;
+}
+
+// Examples:
+console.log(crazyCase2ReturnOfCrazyCase('multiple words here')); // 'mUlTiPlE wOrDs HeRe'
+
+/********************************************
  * CODE DOWN HERE IS FOR INTERNAL USE ONLY. *
  *           PLEASE DON'T TOUCH!            *
  ********************************************/
