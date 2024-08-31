@@ -6,9 +6,8 @@ function xify(inputString) {
 
   let result = '';
   
-  // Loop through each character in the input string
   for (let i = 0; i < inputString.length; i++) {
-      result += 'x'; // Append 'x' to the result for each character
+      result += 'x'; 
   }
   
   return result;
@@ -104,14 +103,14 @@ function ciEmailify(fullName) {
   let email = '';
   let atSymbol = '@';
   let domain = 'perseverenow.org';
-  let lowerCaseOffset = 'a'.charCodeAt(0) - 'A'.charCodeAt(0); // Offset to convert uppercase to lowercase
+  let lowerCaseOffset = 'a'.charCodeAt(0) - 'A'.charCodeAt(0); 
 
   for (let i = 0; i < fullName.length; i++) {
       let charCode = fullName.charCodeAt(i);
       
       if (fullName[i] === ' ') {
           email += '.';
-      } else if (charCode >= 65 && charCode <= 90) { // Uppercase letters
+      } else if (charCode >= 65 && charCode <= 90) { 
           email += String.fromCharCode(charCode + lowerCaseOffset);
       } else {
           email += fullName[i];
@@ -127,7 +126,7 @@ function ciEmailify(fullName) {
   return email;
 }
 
-console.log(ciEmailify('colin jaffe')); // Output: 'colin.jaffe@perseverenow.org'
+console.log(ciEmailify('colin jaffe'));
 
 // reverse function to reverse a string.
 function reverse(str) {
@@ -161,6 +160,8 @@ function onlyVowels(word) {
 console.log(onlyVowels('javascript'));
 
 // Extra stretch goals //
+
+
 // crazyCase function to convert a string to a crazy case.
 function crazyCase(str) {
   let result = '';
@@ -197,7 +198,7 @@ function titleCase(str) {
   return result;
 }
 
-console.log(titleCase('return of the king')); // 'Return Of The King'
+console.log(titleCase('return of the king'));
 
 // camelCase function to convert a string to camel case.
 
@@ -239,15 +240,16 @@ function crazyCase2ReturnOfCrazyCase(str) {
           }
           toggle = !toggle; // Switch the case for the next letter
       } else {
-          result += str[i]; // Just add the space as is
+          result += str[i]; 
       }
   }
 
   return result;
 }
 
-// Examples:
-console.log(crazyCase2ReturnOfCrazyCase('multiple words here')); // 'mUlTiPlE wOrDs HeRe'
+console.log(crazyCase2ReturnOfCrazyCase('multiple words here'));
+
+
 
 /********************************************
  * CODE DOWN HERE IS FOR INTERNAL USE ONLY. *
